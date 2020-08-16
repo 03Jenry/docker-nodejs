@@ -1,0 +1,39 @@
+version: "3"
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    volumes:
+        - ./rabbitmq_data/:/var/lib/rabbitmq/
+    environment:
+        RABBITMQ_ERLANG_COOKIE: 'secrete cookie here'
+        RABBITMQ_DEFAULT_USER: 'usuario'
+        RABBITMQ_DEFAULT_PASS: 'pass'
+    ports:
+        - 5672:15672
+    networks:
+      - helloword
+  app:
+    container_name: app_node
+    restart: always
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/home/node/app
+    networks:
+      - helloword
+    links:
+     - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ./mongo_data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - helloword
+networks:
+  helloword:
+    driver: bridge

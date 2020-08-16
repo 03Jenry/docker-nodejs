@@ -1,0 +1,15 @@
+{
+    "ambiente":"development",
+    "dbUrl": "mongodb://mongo:27017/development",
+    "rabbitSettings":{
+        "protocol": "amqp",
+        "hostname": "rabbitmq",
+        "port": 5672,
+        "username": "usuario",
+        "password": "pass",
+        "vhost": "/",
+        "authMechanism": "['PLAIN', 'AMQPLAIN', 'EXTERNAL']"
+    }
+}
+
+    
