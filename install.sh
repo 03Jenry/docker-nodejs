@@ -2,7 +2,11 @@
 # Programa para ejecutar los contenedores
 
 #Instalar mediante una imagen de node js
-docker run --rm -v $(pwd):/home/node/app -w /home/node/app node:13-alpine npm install
+#docker run --rm -v $(pwd):/home/node/app -w /home/node/app node:13-alpine npm install
+
+docker run --rm -v $(pwd):/home/node/app -w /home/node/app node:13-slim npm install
+docker run --rm -v $(pwd):/home/node/app -w /home/node/app node:13-slim npm install nodemon
+
 
 #Desplegar docker-compose
 docker-compose down

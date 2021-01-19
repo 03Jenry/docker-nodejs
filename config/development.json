@@ -1,6 +1,6 @@
 {
     "ambiente":"development",
-    "dbUrl": "mongodb://mongo:27017/development",
+    "mongodb": "mongodb://mongo:27017/development",
     "rabbitSettings":{
         "protocol": "amqp",
         "hostname": "rabbitmq",
