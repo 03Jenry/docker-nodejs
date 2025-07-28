@@ -1,24 +1,67 @@
 {
-  "name": "helloword",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "name": "nodejs-docker-template",
+  "version": "2.0.0",
+  "description": "🚀 Plantilla moderna de Node.js con Docker, MongoDB y RabbitMQ - Lista para producción",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/index.js"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "format": "prettier --write 'src/**/*.{js,json}'",
+    "docker:build": "docker build -t nodejs-docker-template .",
+    "docker:run": "docker run -p 3000:3000 nodejs-docker-template",
+    "docker:compose": "docker-compose up -d",
+    "docker:compose:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "nodejs",
+    "express",
+    "docker",
+    "mongodb",
+    "rabbitmq",
+    "template",
+    "api",
+    "microservices"
+  ],
+  "author": "Tu Nombre <tu.email@ejemplo.com>",
+  "license": "MIT",
   "dependencies": {
-    "amqplib": "^0.6.0",
-    "config": "^3.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^8.0.3",
+    "amqplib": "^0.10.3",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "mongoose": "^5.10.0",
-    "node-env-file": "^0.1.8",
-    "nodemon": "^2.0.7",
-    "request": "^2.88.2",
-    "request-promise": "^4.2.6"
-  }
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.0",
+    "compression": "^1.7.4",
+    "express-rate-limit": "^7.1.5",
+    "express-validator": "^7.0.1",
+    "dotenv": "^16.3.1",
+    "winston": "^3.11.0",
+    "config": "^3.3.11"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3",
+    "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "prettier": "^3.1.1"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tu-usuario/nodejs-docker-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tu-usuario/nodejs-docker-template/issues"
+  },
+  "homepage": "https://github.com/tu-usuario/nodejs-docker-template#readme"
 }

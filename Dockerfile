@@ -1,17 +1,35 @@
-FROM node:13
+# Usar imagen oficial de Node.js LTS
+FROM node:18-alpine
 
-RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+# Crear usuario no-root para seguridad
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S nodejs -u 1001
 
-WORKDIR /home/node/app
+# Establecer directorio de trabajo
+WORKDIR /app
 
+# Copiar archivos de dependencias
 COPY package*.json ./
 
-RUN npm install -g nodemon
+# Instalar dependencias (usar npm install en lugar de npm ci)
+RUN npm install --omit=dev && \
+    npm cache clean --force
 
-COPY --chown=node:node . .
+# Copiar código fuente
+COPY --chown=nodejs:nodejs . .
 
+# Crear directorio para logs
+RUN mkdir -p logs && chown -R nodejs:nodejs logs
+
+# Exponer puerto
 EXPOSE 3000
 
-USER node
+# Cambiar al usuario no-root
+USER nodejs
 
-CMD [ "npm", "start" ]
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+    CMD node healthcheck.js
+
+# Comando para ejecutar la aplicación
+CMD ["npm", "start"]
