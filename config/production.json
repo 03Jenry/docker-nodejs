@@ -1,0 +1,40 @@
+{
+  "ambiente": "production",
+  "mongodb": "mongodb://appuser:apppassword@mongo:27017/production?authSource=production",
+  "rabbitSettings": {
+    "protocol": "amqp",
+    "hostname": "rabbitmq",
+    "port": 5672,
+    "username": "usuario",
+    "password": "pass",
+    "vhost": "/",
+    "authMechanism": ["PLAIN", "AMQPLAIN", "EXTERNAL"]
+  },
+  "redis": {
+    "host": "redis",
+    "port": 6379,
+    "password": null,
+    "db": 0
+  },
+  "server": {
+    "port": 3000,
+    "host": "0.0.0.0"
+  },
+  "security": {
+    "rateLimit": {
+      "windowMs": 900000,
+      "max": 50
+    },
+    "cors": {
+      "origin": ["https://tu-dominio.com"],
+      "credentials": true
+    }
+  },
+  "logging": {
+    "level": "warn",
+    "file": {
+      "enabled": true,
+      "filename": "logs/app.log"
+    }
+  }
+} 
